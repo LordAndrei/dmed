@@ -1,0 +1,6 @@
+framework module Pods_dmedTests {
+  umbrella header "Pods-dmedTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
