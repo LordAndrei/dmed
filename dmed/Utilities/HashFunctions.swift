@@ -31,10 +31,10 @@ class DmedUtils {
     }
 
   static func getHeaders() -> [String: String] {
-    let publicKey = "bf22c15f7759294ead460ed03d6e4735"
+    let publicKey = "<<<Insert Marvel Public SDK Key>>>"
 
     // Sssh. Don't tell anyone. I'd normally hide this better
-    let privateKey = "a1a3d73c87389672b1ea6373711d9fef9de781e5"
+    let privateKey = "<<<Insert Marvel Private SDK Key>>>"
 
     let ts = String(Date.timeIntervalSinceReferenceDate)
     let hash = MD5(string: "\(ts)\(privateKey)\(publicKey)")
