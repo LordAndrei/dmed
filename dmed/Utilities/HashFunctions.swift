@@ -11,7 +11,9 @@ import var CommonCrypto.CC_MD5_DIGEST_LENGTH
 import func CommonCrypto.CC_MD5
 import typealias CommonCrypto.CC_LONG
 
-func MD5(string: String) -> String {
+class DmedUtils {
+
+    static func MD5(string: String) -> String {
         let length = Int(CC_MD5_DIGEST_LENGTH)
         let messageData = string.data(using:.utf8)!
         var digestData = Data(count: length)
@@ -28,3 +30,21 @@ func MD5(string: String) -> String {
       return digestData.map { String(format: "%02hhx", $0)}.joined()
     }
 
+  static func getHeaders() -> [String: String] {
+    let publicKey = "bf22c15f7759294ead460ed03d6e4735"
+
+    // Sssh. Don't tell anyone. I'd normally hide this better
+    let privateKey = "a1a3d73c87389672b1ea6373711d9fef9de781e5"
+
+    let ts = String(Date.timeIntervalSinceReferenceDate)
+    let hash = MD5(string: "\(ts)\(privateKey)\(publicKey)")
+
+    let retDict = [
+      "apikey":publicKey,
+      "ts":ts,
+      "hash":hash
+    ]
+    return retDict
+  }
+
+}

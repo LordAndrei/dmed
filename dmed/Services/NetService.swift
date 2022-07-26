@@ -25,11 +25,6 @@ class NetService: ObservableObject {
   }
 
   func load() {
-    let parameters = [
-      "apikey":apiKey,
-      "ts":ts,
-      "hash":magicHashIWouldNeverStoreThisWay
-    ]
 
     let urlString = "\(rootURL)"
     print(urlString)
@@ -38,7 +33,7 @@ class NetService: ObservableObject {
       return
     }
 
-    AF.request(url, parameters: parameters).response { response in
+    AF.request(url, parameters: DmedUtils.getHeaders()).response { response in
       guard let data = response.data else {
         print("Throw an error here.")
         return
