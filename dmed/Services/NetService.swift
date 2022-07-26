@@ -16,8 +16,7 @@ class NetService: ObservableObject {
   let apiKey = "bf22c15f7759294ead460ed03d6e4735"
   let ts = "1"
   let magicHashIWouldNeverStoreThisWay = "a4693ceec80fe7e05be72124bae71730"
-//  let rootURL = "https://gateway.marvel.com/v1/public/comics/70779"
-  let rootURL = "https://gateway.marvel.com/v1/public/comics/73708"
+  let rootURL = "https://gateway.marvel.com/v1/public/comics/56116"
 
   @Published var returnData: ComicDataWrapper?
 
@@ -26,21 +25,20 @@ class NetService: ObservableObject {
   }
 
   func load() {
-//    let headerDict:[String:String] = [
-//      "apiKey":apiKey,
-//      "ts":ts,
-//      "hash":magicHashIWouldNeverStoreThisWay
-//    ]
+    let parameters = [
+      "apikey":apiKey,
+      "ts":ts,
+      "hash":magicHashIWouldNeverStoreThisWay
+    ]
 
-    let params = "?apikey=\(apiKey)&ts=1&hash=\(magicHashIWouldNeverStoreThisWay)"
-    let urlString = "\(rootURL)\(params)"
+    let urlString = "\(rootURL)"
     print(urlString)
     guard let url = URL(string: urlString) else {
       print("Throw an error here.")
       return
     }
 
-    AF.request(url).response { response in
+    AF.request(url, parameters: parameters).response { response in
       guard let data = response.data else {
         print("Throw an error here.")
         return
@@ -57,5 +55,9 @@ class NetService: ObservableObject {
         print("ReturnData: \(self.returnData!)")
       }
     }
+  }
+
+  func makeMagicHash() {
+    SSL_RSA_WITH_NULL_MD5
   }
 }
