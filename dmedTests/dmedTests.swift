@@ -25,11 +25,11 @@ class dmedTests: XCTestCase {
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
       var baseText = "1"
-      var hashText = MD5(string: baseText)
+      var hashText = DmedUtils.MD5(string: baseText)
       XCTAssertEqual(hashText, "c4ca4238a0b923820dcc509a6f75849b")
 
       baseText = "Hello, World"
-      hashText = MD5(string: baseText)
+      hashText = DmedUtils.MD5(string: baseText)
       XCTAssertEqual(hashText, "82bb413746aee42f89dea2b59614f9ef")
     }
 
