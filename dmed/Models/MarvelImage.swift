@@ -17,11 +17,25 @@ struct MarvelImage: Codable {
   }
 
   var webImage: URL? {
-    var retValue: URL?
+    var retURL: URL?
     if path != nil && fileExt != nil {
-      retValue = URL(string:"\(path!).\(fileExt!)")
+      retURL = URL(string:"\(path!).\(fileExt!)")
+      if retURL != nil {
+        let scheme = retURL!.scheme
+        if scheme == "http" {
+          // We received an insecure URL.
+          // Lets try to make it secure
+          let path = retURL!.path
+          let host = retURL!.host
+          if path.count < 1 || host == nil {
+            print("throw an error")
+          } else {
+            retURL = URL(string:"https://\(host!)\(path)")
+          }
+        }
+      }
     }
-    return retValue
+    return retURL
   }
 
 }
