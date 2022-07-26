@@ -45,6 +45,7 @@ struct ContentView: View {
           .italic()
           .padding(.bottom)
       } // VStack
+      .padding(.top)
     }
 }
 
