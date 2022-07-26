@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+  @ObservedObject var netService = NetService()
     var body: some View {
       VStack {
         HStack {
