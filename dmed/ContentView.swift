@@ -14,27 +14,18 @@ struct ContentView: View {
       VStack {
         HStack {
           if let image = netService.returnData?.data?.results?.first?.images?.first?.webImage {
-            WebImage(url: image)
-              .resizable()
-              .placeholder(Image(systemName: "wifi"))
-              .aspectRatio(contentMode: .fit)
-              .frame(width: 150)
+            getImage(for: image)
           } else {
           Image("notfound")
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(width: 150)
           }
-          let title = netService.returnData?.data?.results?.first?.title ?? "Unable to Load"
-          Text(title)
-            .font(.largeTitle)
-            .fontWeight(.bold)
-            .padding()
+          getTitle()
         } // HStack
         Form {
           Section {
-            let description = netService.returnData?.data?.results?.first?.description ?? "Unable to Load"
-            Text(description)
+            getDescription()
           } header: {
             Text("About this comic…")
           } // Section
@@ -47,6 +38,27 @@ struct ContentView: View {
       } // VStack
       .padding(.top)
     }
+
+  func getImage(for imageURL: URL) -> some View {
+      return WebImage(url: imageURL)
+        .resizable()
+        .placeholder(Image(systemName: "wifi"))
+        .aspectRatio(contentMode: .fit)
+        .frame(width: 150)
+  }
+
+  func getTitle() -> some View{
+    let title = netService.returnData?.data?.results?.first?.title ?? "Unable to Load"
+    return Text(title)
+      .font(.largeTitle)
+      .fontWeight(.bold)
+      .padding()
+  }
+
+  func getDescription() -> some View {
+    let description = netService.returnData?.data?.results?.first?.description ?? "Unable to Load"
+    return Text(description)
+  }
 }
 
 struct ContentView_Previews: PreviewProvider {
