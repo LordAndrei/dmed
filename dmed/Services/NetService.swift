@@ -16,7 +16,8 @@ class NetService: ObservableObject {
   let apiKey = "bf22c15f7759294ead460ed03d6e4735"
   let ts = "1"
   let magicHashIWouldNeverStoreThisWay = "a4693ceec80fe7e05be72124bae71730"
-  let rootURL = "https://gateway.marvel.com/v1/public/comics/70779"
+//  let rootURL = "https://gateway.marvel.com/v1/public/comics/70779"
+  let rootURL = "https://gateway.marvel.com/v1/public/comics/73708"
 
   @Published var returnData: ComicDataWrapper?
 
